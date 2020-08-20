@@ -18,7 +18,7 @@ final class TemperatureTest extends TestCase
     public function tryToCreateANonValidTemperature()
     {
         $this->expectExceptionMessage("Measure should be positive");
-        new Temperature(-1);
+        Temperature::take(-1);
     }
 
     /**
@@ -30,7 +30,7 @@ final class TemperatureTest extends TestCase
 
         $this->assertSame(
             $measure,
-            (new Temperature($measure))->measure()
+            Temperature::take($measure)->measure()
         );
     }
 
