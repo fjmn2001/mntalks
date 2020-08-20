@@ -33,4 +33,17 @@ final class TemperatureTest extends TestCase
             (new Temperature($measure))->measure()
         );
     }
+
+    /**
+     * @test
+     */
+    public function tryToCreateAValidTemperatureWithNameConstructor()
+    {
+        $measure = 18;
+
+        $this->assertSame(
+            $measure,
+            Temperature::take($measure)->measure()
+        );
+    }
 }

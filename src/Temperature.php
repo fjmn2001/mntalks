@@ -29,6 +29,11 @@ final class Temperature
         }
     }
 
+    public static function take(int $measure): self
+    {
+        return new static($measure);
+    }
+
     public function measure(): int
     {
         return $this->measure;
