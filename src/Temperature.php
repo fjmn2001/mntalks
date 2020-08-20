@@ -13,14 +13,13 @@ final class Temperature
 
     public function __construct(int $measure)
     {
-        $this->ensureMeasureIsPositive($measure);
-
-        $this->measure = $measure;
+        $this->setMeasure($measure);
     }
 
-    public function measure(): int
+    private function setMeasure(int $measure): void
     {
-        return $this->measure;
+        $this->ensureMeasureIsPositive($measure);
+        $this->measure = $measure;
     }
 
     private function ensureMeasureIsPositive(int $measure): void
@@ -30,4 +29,8 @@ final class Temperature
         }
     }
 
+    public function measure(): int
+    {
+        return $this->measure;
+    }
 }
