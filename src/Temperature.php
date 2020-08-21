@@ -25,7 +25,7 @@ final class Temperature
     private function ensureMeasureIsPositive(int $measure): void
     {
         if ($measure < 0) {
-            throw new TemperatureNegativeException("Measure should be positive");
+            throw TemperatureNegativeException::fromMeasure($measure);
         }
     }
 
