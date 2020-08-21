@@ -7,7 +7,7 @@ declare(strict_types=1);
 namespace MNTalks;
 
 
-final class Temperature
+class Temperature
 {
     private $measure;
 
@@ -37,5 +37,18 @@ final class Temperature
     public function measure(): int
     {
         return $this->measure;
+    }
+
+    public function isSuperHost(): bool
+    {
+        $threshold = $this->getThreshold();
+
+        return $this->measure() > $threshold;
+    }
+
+    protected function getThreshold(): int
+    {
+        $threshold = 50;
+        return $threshold;//from SQL adding smell code
     }
 }
