@@ -7,11 +7,12 @@ declare(strict_types=1);
 namespace MNTalks\Tests;
 
 
+use MNTalks\ColdThresholdSource;
 use MNTalks\Temperature;
 use MNTalks\TemperatureTestClass;
 use PHPUnit\Framework\TestCase;
 
-final class TemperatureTest extends TestCase
+final class TemperatureTest extends TestCase implements ColdThresholdSource
 {
     /**
      * @test
@@ -55,7 +56,7 @@ final class TemperatureTest extends TestCase
     public function tryToCheckIfAColdTemperatureIsSuperHot()
     {
         $this->assertFalse(
-            TemperatureTestClass::take(10)->isSuperHost()
+            TemperatureTestClass::take(10)->isSuperHot()
         );
     }
 
@@ -65,7 +66,24 @@ final class TemperatureTest extends TestCase
     public function tryToCheckIfASuperHotTemperatureIsSuperHot()
     {
         $this->assertTrue(
-            TemperatureTestClass::take(100)->isSuperHost()
+            TemperatureTestClass::take(100)->isSuperHot()
         );
+    }
+
+    /**
+     * @test
+     */
+    public function tryToCheckIfASuperColdTemperatureIsSuperCold()
+    {
+        $this->assertTrue(
+            TemperatureTestClass::take(10)->isSuperCold(
+                $this
+            )
+        );
+    }
+
+    public function getThreshold(): int
+    {
+        return 50;
     }
 }

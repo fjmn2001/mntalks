@@ -39,11 +39,18 @@ class Temperature
         return $this->measure;
     }
 
-    public function isSuperHost(): bool
+    public function isSuperHot(): bool
     {
         $threshold = $this->getThreshold();
 
         return $this->measure() > $threshold;
+    }
+
+    public function isSuperCold(ColdThresholdSource $coldThresholdSource): bool
+    {
+        $threshold = $coldThresholdSource->getThreshold();
+
+        return $this->measure() < $threshold;
     }
 
     protected function getThreshold(): int
