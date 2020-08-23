@@ -103,4 +103,32 @@ final class TemperatureTest extends TestCase implements ColdThresholdSource
             )
         );
     }
+
+    /**
+     * @test
+     */
+    public function tryToCreateAValidTemperatureFromStation()
+    {
+        $this->assertSame(
+            50,
+            Temperature::fromStation(
+                $this
+            )->measure()
+        );
+    }
+
+    public function sensor()
+    {
+        return $this;
+    }
+
+    public function temperature()
+    {
+        return $this;
+    }
+
+    public function measure()
+    {
+        return 50;
+    }
 }

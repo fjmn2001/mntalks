@@ -46,6 +46,12 @@ class Temperature
         return $this->measure() > $threshold;
     }
 
+    protected function getThreshold(): int
+    {
+        $threshold = 50;
+        return $threshold;//from SQL adding smell code
+    }
+
     public function isSuperCold(ColdThresholdSource $coldThresholdSource): bool
     {
         $threshold = $coldThresholdSource->getThreshold();
@@ -53,9 +59,10 @@ class Temperature
         return $this->measure() < $threshold;
     }
 
-    protected function getThreshold(): int
+    public static function fromStation($station): self
     {
-        $threshold = 50;
-        return $threshold;//from SQL adding smell code
+        return new static(
+            $station->sensor()->temperature()->measure()
+        );
     }
 }
