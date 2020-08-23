@@ -86,4 +86,21 @@ final class TemperatureTest extends TestCase implements ColdThresholdSource
     {
         return 50;
     }
+
+    /**
+     * @test
+     */
+    public function tryToCheckIfASuperColdTemperatureIsSuperColdWithAnonClass()
+    {
+        $this->assertTrue(
+            TemperatureTestClass::take(10)->isSuperCold(
+                new class implements ColdThresholdSource {
+                    public function getThreshold(): int
+                    {
+                        return 50;
+                    }
+                }
+            )
+        );
+    }
 }
