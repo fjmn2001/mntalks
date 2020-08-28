@@ -29,7 +29,7 @@ final class TemperatureTest extends TestCase implements ColdThresholdSource
      */
     public function tryToCreateAValidTemperature()
     {
-        $measure = 18;
+        $measure = 0;
 
         $this->assertSame(
             $measure,

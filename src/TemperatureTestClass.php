@@ -11,6 +11,6 @@ final class TemperatureTestClass extends Temperature
 {
     protected function getThreshold(): int
     {
-        return 50;
+        return 10;
     }
 }
