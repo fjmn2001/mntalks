@@ -65,4 +65,11 @@ class Temperature
             $station->sensor()->temperature()->measure()
         );
     }
+
+    public function sum(Temperature $anotherTemp): self
+    {
+        return new static(
+            $this->measure() + $anotherTemp->measure()
+        );
+    }
 }
